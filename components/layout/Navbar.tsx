@@ -13,6 +13,7 @@ const navItems = [
     { name: "Business Analytics", path: "/business" },
     { name: "Data Analysis", path: "/data" },
     { name: "Career Dev", path: "/career" },
+    { name: "Blog", path: "/blog" },
 ];
 
 export function Navbar() {
