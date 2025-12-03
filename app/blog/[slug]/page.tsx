@@ -10,6 +10,22 @@ export async function generateStaticParams() {
     }));
 }
 
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+    const post = getPostData(params.slug);
+
+    return {
+        title: `${post.title} | StemLab`,
+        description: post.excerpt,
+        openGraph: {
+            title: post.title,
+            description: post.excerpt,
+            type: 'article',
+            publishedTime: post.date,
+            authors: ['StemLab Team'],
+        },
+    };
+}
+
 export default function BlogPost({ params }: { params: { slug: string } }) {
     const post = getPostData(params.slug);
 
