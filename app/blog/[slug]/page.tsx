@@ -35,8 +35,25 @@ const components = {
 export default function BlogPost({ params }: { params: { slug: string } }) {
     const post = getPostData(params.slug);
 
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: post.title,
+        datePublished: post.date,
+        dateModified: post.date,
+        description: post.excerpt,
+        author: {
+            '@type': 'Organization',
+            name: 'StemLab',
+        },
+    };
+
     return (
         <article className="bg-brand-dark min-h-screen pt-28 pb-20">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <div className="max-w-3xl mx-auto px-6">
                 <Link href="/blog" className="inline-flex items-center gap-2 text-slate-400 hover:text-white mb-8 transition-colors text-sm font-medium">
                     <ArrowLeft weight="bold" /> Back to Journal
