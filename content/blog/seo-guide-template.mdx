@@ -37,6 +37,15 @@ import pandas as pd
 df = pd.read_csv("data.csv")
 ```
 
+### Adding Images
+To add an optimized image, place your image file in the `public/images/` folder (create it if it doesn't exist). Then use the `<BlogImage />` component:
+
+<BlogImage 
+  src="/images/my-chart.png" 
+  alt="Chart showing revenue growth" 
+  caption="Figure 1: Revenue Growth 2024"
+/>
+
 ## 3. SEO Checklist
 
 - [ ] Does your **Title** contain the main keyword?

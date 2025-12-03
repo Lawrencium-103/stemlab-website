@@ -26,6 +26,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
 }
 
+import { BlogImage } from "@/components/ui/BlogImage";
+
+const components = {
+    BlogImage,
+};
+
 export default function BlogPost({ params }: { params: { slug: string } }) {
     const post = getPostData(params.slug);
 
@@ -49,7 +55,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                 </header>
 
                 <div className="prose prose-invert prose-lg max-w-none prose-headings:font-mono prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-400">
-                    <MDXRemote source={post.content} />
+                    <MDXRemote source={post.content} components={components} />
                 </div>
             </div>
         </article>
