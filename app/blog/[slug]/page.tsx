@@ -22,11 +22,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
             type: 'article',
             publishedTime: post.date,
             authors: ['StemLab Team'],
+            images: post.coverImage ? [post.coverImage] : [],
         },
     };
 }
 
 import { BlogImage } from "@/components/ui/BlogImage";
+import Image from "next/image";
 
 const components = {
     BlogImage,
@@ -42,6 +44,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         datePublished: post.date,
         dateModified: post.date,
         description: post.excerpt,
+        image: post.coverImage ? [post.coverImage] : [],
         author: {
             '@type': 'Organization',
             name: 'StemLab',
@@ -66,9 +69,20 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                     <h1 className="font-mono text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
                         {post.title}
                     </h1>
-                    <p className="text-xl text-slate-400 leading-relaxed">
+                    <p className="text-xl text-slate-400 leading-relaxed mb-8">
                         {post.excerpt}
                     </p>
+                    {post.coverImage && (
+                        <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-slate-800">
+                            <Image
+                                src={post.coverImage}
+                                alt={post.title}
+                                fill
+                                className="object-cover"
+                                priority
+                            />
+                        </div>
+                    )}
                 </header>
 
                 <div className="prose prose-invert prose-lg max-w-none prose-headings:font-mono prose-headings:font-bold prose-a:text-brand-blue hover:prose-a:text-blue-400">
